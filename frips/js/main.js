@@ -17,10 +17,11 @@ $(document).ready(function() {
         	if (response.status === 'connected') {
     	      // Logged into your app and Facebook.
         		testAPI();
-        		setLocations();
+        		showMain();
     	    } else {
-    	    	$(location).attr('href','login.html');
-    	    	return false;
+    	    	//$(location).attr('href','login.html');
+    	    	//return false;
+    	    	showFbLoginButton();
     	    }
         });
 
@@ -36,7 +37,28 @@ $(document).ready(function() {
 	    });
 	}
     
-    function setLocations() {
+    function showFbLoginButton() {
+    	$(".ui-content").html('<div style="text-align: center"><a href="#" id="fb-login-btn"><img src="img/fb_login.png"></a></div>');
+    	$('.ui-content').trigger('create');
+    	$("#fb-login-btn").click(function () {
+    		FB.login(function(response){
+    			if (response.status === 'connected') {
+    				$(location).attr('href','/');
+    	    	    return false;
+    			} else {
+    				console.log('Not connected to Facebook');
+    			}
+    		});
+    	});
+    }
+    
+    function showMain() {
+    	$(".ui-content").html('<ul id="autocomplete" data-role="listview" data-inset="true"' + 
+    			' data-filter="true" data-filter-reveal="true"' + 
+				' data-filter-placeholder="Where would you like to go?"></ul>');
+    	
+    	$('.ui-content').trigger('create');
+    	
 		$("#autocomplete").on("filterablebeforefilter", function (e, data) {
 	        var $ul = $(this);
 	        $.each(cities, function (i, city) {
@@ -48,4 +70,5 @@ $(document).ready(function() {
 	        $ul.trigger("updatelayout");
 	    });
     }
+    
 });
