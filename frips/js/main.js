@@ -63,7 +63,7 @@ $(document).ready(function() {
 	        var $ul = $(this);
 	        $.each(cities, function (i, city) {
 	        	$ul.append($("<li>").append($("<a>").attr("href", "#").append(city).click(function () {
-	        		FB.api('/search?type=place&q=' + city, function (response) {
+	        		FB.api('/search?type=location&q=' + city, function (response) {
 	        			if (response && response.data) {
 	        				var categories = [];
 	        				$.each(response.data, function (idx, place) {
