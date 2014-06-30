@@ -63,9 +63,16 @@ $(document).ready(function() {
 	        var $ul = $(this);
 	        $.each(cities, function (i, city) {
 	        	$ul.append($("<li>").append($("<a>").attr("href", "#").append(city).click(function () {
-	        		FB.api('/search?type=location&q=' + city, function (response) {
+	        		FB.api('/search?type=place&q=' + city, function (response) {
 	        			if (!response.errors) {
-	        				console.log(response);
+	        				var categories = [];
+	        				$.each(response, function (idx, place) {
+	        					categories[place.category] = place.category;
+	        				});
+	        				console.log("Categories: ");
+	        				$.each(categories, function (key, value) {
+	        					console.log(key);
+	        				});
 	        			} else {
 	        				console.log(response.errors);
 	        			}
