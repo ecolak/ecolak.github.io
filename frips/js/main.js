@@ -17,8 +17,7 @@ $(document).ready(function() {
         	if (response.status === 'connected') {
     	      // Logged into your app and Facebook.
         		testAPI();
-        		//showMain();
-        		showApiTestUi();
+        		showMain();
     	    } else {
     	    	//$(location).attr('href','login.html');
     	    	//return false;
@@ -75,20 +74,6 @@ $(document).ready(function() {
 	        var $ul = $(this);
 	        $.each(cities, function (i, city) {
 	        	$ul.append($("<li>").append($("<a>").attr("href", "#").append(city).click(function () {
-	        		FB.api('/search?type=place&q=' + city, function (response) {
-	        			if (response && response.data) {
-	        				var categories = [];
-	        				$.each(response.data, function (idx, place) {
-	        					categories[place.category] = place.category;
-	        				});
-	        				console.log("Num categories: " + categories.length);
-	        				for (var cat in categories) {
-	        					console.log(cat);
-	        				}
-	        			} else {
-	        				console.log(response.errors);
-	        			}
-	        		});
 	        		console.log("Going to " + city);
 	        	})));
 	        });
