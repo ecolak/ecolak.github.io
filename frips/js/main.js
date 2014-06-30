@@ -54,11 +54,11 @@ $(document).ready(function() {
     }
     
     function showApiTestUi() {
-    	$(".ui-content").html('<input type="text" name="text-basic" id="text-basic" value="">' + 
+    	$(".ui-content").html('<input type="text" name="text-basic" id="api-call" value="">' + 
     			'<button class="ui-btn" id="api-button">Submit</button>');
     	$('.ui-content').trigger('create');
     	$('#api-button').click(function () {
-    		FB.api($(this).val(), function (response) {
+    		FB.api($('#api-call').val(), function (response) {
     			console.log(response);
     		});
     	});
