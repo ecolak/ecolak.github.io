@@ -17,7 +17,8 @@ $(document).ready(function() {
         	if (response.status === 'connected') {
     	      // Logged into your app and Facebook.
         		testAPI();
-        		showMain();
+        		//showMain();
+        		showApiTestUi();
     	    } else {
     	    	//$(location).attr('href','login.html');
     	    	//return false;
@@ -48,6 +49,17 @@ $(document).ready(function() {
     			} else {
     				console.log('Not connected to Facebook');
     			}
+    		});
+    	});
+    }
+    
+    function showApiTestUi() {
+    	$(".ui-content").html('<input type="text" name="text-basic" id="text-basic" value="">' + 
+    			'<button class="ui-btn" id="api-button">Submit</button>');
+    	$('.ui-content').trigger('create');
+    	$('#api-button').click(function () {
+    		FB.api($(this).val(), function (response) {
+    			console.log(response);
     		});
     	});
     }
