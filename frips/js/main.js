@@ -69,10 +69,10 @@ $(document).ready(function() {
 	        				$.each(response.data, function (idx, place) {
 	        					categories[place.category] = place.category;
 	        				});
-	        				console.log("Categories: ");
-	        				$.each(categories, function (key, value) {
-	        					console.log(key);
-	        				});
+	        				console.log("Num categories: " + categories.length);
+	        				for (var cat in categories) {
+	        					console.log(cat);
+	        				}
 	        			} else {
 	        				console.log(response.errors);
 	        			}
