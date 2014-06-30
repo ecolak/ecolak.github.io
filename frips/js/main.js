@@ -49,7 +49,7 @@ $(document).ready(function() {
     			} else {
     				console.log('Not connected to Facebook');
     			}
-    		});
+    		}, { scope: 'user_friends' });
     	});
     }
     
